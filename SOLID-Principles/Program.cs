@@ -20,9 +20,36 @@
 //}
 #endregion
 
-var quiz = new OCP.After.Quiz(OCP.After.QuestionBank.Generate());
-quiz.Print();
+#region OCP_RUN_EXAMPLE
+//var quiz = new OCP.After.Quiz(OCP.After.QuestionBank.Generate());
+//quiz.Print(); 
+#endregion
 
+#region LSP-RUN-EXAMPLE
+//var account = new LSP.After.FixedDepositAccount("Issam", 10_000);
+//account.Deposit(1000);
+//Console.ReadKey(); 
+#endregion
 
+#region ISP-RUN-EXAMPLE
+//var employees = ISP.After.Repository.LoadEmployees();
 
+//foreach (var e in employees)
+//{
+//    Console.WriteLine(e.PrintSalarySlip());
+//    Console.WriteLine();
+//}
+#endregion
+#region DIP-RUN-EXAMPLE
+using DIP.After;
+
+var customers = DIP.After.Repository.Customers;
+
+foreach (var customer in customers)
+{
+    var notificationService = new DIP.After.NotificationService(new List<IMessageService>
+    { new DIP.After.EmailService(){EmailAddress=customer.EmailAddress}, new DIP.After.SMSService(){ MobileNo=customer.MobileNo } });
+    notificationService.Notify();
+}
+#endregion
 Console.ReadKey();
